@@ -5,9 +5,16 @@
  */
 package examen2lab_josepereira;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -21,6 +28,12 @@ public class atm extends javax.swing.JFrame {
     public atm() {
         initComponents();
         wombo_combo();
+        Hilo_hora hora = new Hilo_hora(horads);
+        Thread proceso132 = new Thread(hora);
+        proceso132.start();
+        Hilo_fecha fechita = new Hilo_fecha(fecha);
+        Thread proceso1322 = new Thread(fechita);
+        proceso1322.start();
     }
     static int auxiliar = 0;
 
@@ -89,6 +102,11 @@ public class atm extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         tf_contra = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        horads = new javax.swing.JLabel();
+        fecha = new javax.swing.JLabel();
         trances = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
@@ -117,6 +135,9 @@ public class atm extends javax.swing.JFrame {
         cienas = new javax.swing.JComboBox<>();
         cuenta_cb = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        cuenta_cb2 = new javax.swing.JComboBox<>();
+        jButton17 = new javax.swing.JButton();
         retiros = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         quinientos1 = new javax.swing.JSpinner();
@@ -137,6 +158,11 @@ public class atm extends javax.swing.JFrame {
         sp_manager500 = new javax.swing.JSpinner();
         jButton16 = new javax.swing.JButton();
         wombo_manager = new javax.swing.JComboBox<>();
+        jDialog1 = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_1 = new javax.swing.JTextArea();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -318,12 +344,13 @@ public class atm extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(cu_papellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
-                .addGroup(crear_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cu_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(crear_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(crear_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
-                        .addComponent(cu_segundoapel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cu_segundoapel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(crear_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(cu_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(crear_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rb_m)
@@ -463,10 +490,35 @@ public class atm extends javax.swing.JFrame {
             }
         });
 
+        jButton18.setText("Guardar txt");
+        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton18MouseClicked(evt);
+            }
+        });
+
+        jLabel43.setText("Hora:");
+
+        jLabel44.setText("Fecha:");
+
+        horads.setText("jLabel45");
+
+        fecha.setText("jLabel45");
+
         javax.swing.GroupLayout atmbbLayout = new javax.swing.GroupLayout(atmbb.getContentPane());
         atmbb.getContentPane().setLayout(atmbbLayout);
         atmbbLayout.setHorizontalGroup(
             atmbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(atmbbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel43)
+                .addGap(18, 18, 18)
+                .addComponent(horads)
+                .addGap(146, 146, 146)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton18)
+                .addGap(23, 23, 23))
             .addGroup(atmbbLayout.createSequentialGroup()
                 .addGroup(atmbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(atmbbLayout.createSequentialGroup()
@@ -487,8 +539,10 @@ public class atm extends javax.swing.JFrame {
                             .addComponent(tf_atm_nombre)
                             .addComponent(jLabel20)))
                     .addGroup(atmbbLayout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(jButton7)))
+                        .addContainerGap()
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fecha)))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         atmbbLayout.setVerticalGroup(
@@ -511,9 +565,23 @@ public class atm extends javax.swing.JFrame {
                         .addGap(86, 86, 86)
                         .addComponent(jLabel24))
                     .addComponent(tf_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jButton7)
-                .addGap(68, 68, 68))
+                .addGroup(atmbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(atmbbLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addGroup(atmbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7)
+                            .addComponent(jButton18))
+                        .addGap(68, 68, 68))
+                    .addGroup(atmbbLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(atmbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel43)
+                            .addComponent(horads))
+                        .addGap(33, 33, 33)
+                        .addGroup(atmbbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel44)
+                            .addComponent(fecha))
+                        .addContainerGap(42, Short.MAX_VALUE))))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -739,6 +807,15 @@ public class atm extends javax.swing.JFrame {
 
         jLabel30.setText("Cuenta");
 
+        jLabel42.setText("Cuenta Ajena");
+
+        jButton17.setText("Depositar");
+        jButton17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton17MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout depositosLayout = new javax.swing.GroupLayout(depositos.getContentPane());
         depositos.getContentPane().setLayout(depositosLayout);
         depositosLayout.setHorizontalGroup(
@@ -746,18 +823,29 @@ public class atm extends javax.swing.JFrame {
             .addGroup(depositosLayout.createSequentialGroup()
                 .addGroup(depositosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(depositosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(depositosLayout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jLabel25)
+                        .addGroup(depositosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(depositosLayout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addComponent(jLabel25))
+                            .addGroup(depositosLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel42)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cuenta_cb2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(depositosLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel30)
-                        .addGap(18, 18, 18)
-                        .addComponent(cuenta_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(depositosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(depositosLayout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(18, 18, 18)
+                                .addComponent(cuenta_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(depositosLayout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addComponent(jButton17)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         depositosLayout.setVerticalGroup(
             depositosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -770,7 +858,13 @@ public class atm extends javax.swing.JFrame {
                 .addGroup(depositosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cuenta_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel30))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(depositosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cuenta_cb2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel42))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -960,6 +1054,51 @@ public class atm extends javax.swing.JFrame {
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
+        ta_1.setColumns(20);
+        ta_1.setRows(5);
+        jScrollPane1.setViewportView(ta_1);
+
+        jButton19.setText("Cargar Datos");
+        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton19MouseClicked(evt);
+            }
+        });
+
+        jButton20.setText("Guardar");
+        jButton20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton20MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jButton19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addComponent(jButton20)
+                .addGap(72, 72, 72))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton19)
+                    .addComponent(jButton20))
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1131,9 +1270,14 @@ public class atm extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
+
         administrador_binario_atm atm = new administrador_binario_atm("./ATM.diegobb");
         atm.cargarArchivo();
         String error = "";
+
+        for (int j = 0; j < atm.getLista_atms().get(pos_atm).getLogs().size(); j++) {
+            System.out.println(atm.getLista_atms().get(pos_atm).getLogs().get(j));
+        }
 
         try {
             administrador_binario ap = new administrador_binario("./Users.diegobb");
@@ -1165,13 +1309,18 @@ public class atm extends javax.swing.JFrame {
                         trances.setLocationRelativeTo(this);
                         trances.setVisible(true);
                         aux = 1;
-                    } else {
+                    } else if (u instanceof usuario_mantenimiento) {
                         actualw = u;
                         DefaultComboBoxModel m = (DefaultComboBoxModel) wombo_manager.getModel();
                         m.removeAllElements();
                         for (int i = 0; i < atm.getLista_atms().size(); i++) {
                             m.addElement(atm.getLista_atms().get(i));
                         }
+                        Manager.setModal(true);
+                        Manager.pack();
+                        Manager.setLocationRelativeTo(this);
+                        Manager.setVisible(true);
+                        aux = 1;
                     }
                 }
             }
@@ -1217,9 +1366,18 @@ public class atm extends javax.swing.JFrame {
         min.setText(String.valueOf(cien));
         max.setText(String.valueOf(qui));
         DefaultComboBoxModel mod = (DefaultComboBoxModel) cuenta_cb.getModel();
+        DefaultComboBoxModel mod2 = (DefaultComboBoxModel) cuenta_cb2.getModel();
         mod.removeAllElements();
+        mod2.removeAllElements();
         for (int i = 0; i < ((usuario_cliente) ap.getListausuarios().get(pos_usu)).getCuentas().size(); i++) {
             mod.addElement(((usuario_cliente) ap.getListausuarios().get(pos_usu)).getCuentas().get(i));
+        }
+        for (int i = 0; i < ap.getListausuarios().size(); i++) {
+            if (ap.getListausuarios().get(i) instanceof usuario_cliente) {
+                for (int j = 0; j < ((usuario_cliente) ap.getListausuarios().get(i)).getCuentas().size(); j++) {
+                    mod2.addElement(((usuario_cliente) ap.getListausuarios().get(i)).getCuentas().get(j));
+                }
+            }
         }
         depositos.setModal(true);
         depositos.pack();
@@ -1256,7 +1414,10 @@ public class atm extends javax.swing.JFrame {
                 String Descripcion = "Depositado : " + tot;
                 atm.getLista_atms().get(pos_atm).getLogs().add(new log_sistema(actualw.getId().toString(), Descripcion, fe, ho.getHours() + ":" + ho.getMinutes()));
                 atm.escribir();
+                depositos.dispose();
+                trances.dispose();
                 JOptionPane.showMessageDialog(this, "Depositado Correctamente!");
+
             }
 
         } catch (Exception e) {
@@ -1372,6 +1533,8 @@ public class atm extends javax.swing.JFrame {
                     String Descripcion = "Retirado : " + tot;
                     atm.getLista_atms().get(pos_atm).getLogs().add(new log_sistema(actualw.getId().toString(), Descripcion, fe, ho.getHours() + ":" + ho.getMinutes()));
                     atm.escribir();
+                    retiros.dispose();
+                    trances.dispose();
                     JOptionPane.showMessageDialog(this, "Retirado Correctamente!");
                 }
             }
@@ -1397,12 +1560,104 @@ public class atm extends javax.swing.JFrame {
         // TODO add your handling code here:
         administrador_binario_atm atm = new administrador_binario_atm("./ATM.diegobb");
         atm.cargarArchivo();
-        pos_manager=wombo_manager.getSelectedIndex();
-        int po=(int)sp_manager_100.getValue();
-        int po2=(int)sp_manager500.getValue();
-        atm.getLista_atms().get(pos_manager).setCant_100(atm.getLista_atms().get(pos_manager).getCant_100()+po);
-        atm.getLista_atms().get(pos_manager).setCant_500(atm.getLista_atms().get(pos_manager).getCant_500()+po2);
+        pos_manager = wombo_manager.getSelectedIndex();
+        int po = (int) sp_manager_100.getValue();
+        int po2 = (int) sp_manager500.getValue();
+        atm.getLista_atms().get(pos_manager).setCant_100(atm.getLista_atms().get(pos_manager).getCant_100() + po);
+        atm.getLista_atms().get(pos_manager).setCant_500(atm.getLista_atms().get(pos_manager).getCant_500() + po2);
+        atm.escribir();
     }//GEN-LAST:event_jButton16MouseClicked
+
+    private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
+        // TODO add your handling code here:
+        administrador_binario ap = new administrador_binario("./Users.diegobb");
+        ap.cargarArchivo();
+        pos_cuenta = cuenta_cb2.getSelectedIndex();
+        String error = "";
+        administrador_binario_atm atm = new administrador_binario_atm("./ATM.diegobb");
+        atm.cargarArchivo();
+        try {
+            Date fe = new Date();
+            Date ho = new Date();
+            int antes = ((usuario_cliente) ap.getListausuarios().get(pos_usu)).getCuentas().get(pos_cuenta).getSaldo_disponible();
+            int q = (int) quinientos.getSelectedItem() * 500;
+            int c = (int) cienas.getSelectedItem() * 100;
+            int tot = q + c + antes;
+            ((usuario_cliente) ap.getListausuarios().get(pos_usu)).getCuentas().get(pos_cuenta).setSaldo_disponible(tot);
+            ((usuario_cliente) ap.getListausuarios().get(pos_usu)).getTransacciones().add(new trans(actualw.getId(), "Deposito :" + tot, fe, ho.getHours() + ":" + ho.getMinutes()));
+            int t = (int) quinientos.getSelectedItem();
+            int y = (int) cienas.getSelectedItem();
+            atm.getLista_atms().get(pos_atm).setCant_100(atm.getLista_atms().get(pos_atm).getCant_100() - y);
+            atm.getLista_atms().get(pos_atm).setCant_500(atm.getLista_atms().get(pos_atm).getCant_500() - t);
+            ap.escribir();
+            String Descripcion = "Depositado : " + tot;
+            atm.getLista_atms().get(pos_atm).getLogs().add(new log_sistema(actualw.getId().toString(), Descripcion, fe, ho.getHours() + ":" + ho.getMinutes()));
+            atm.escribir();
+            depositos.dispose();
+            trances.dispose();
+            JOptionPane.showMessageDialog(this, "Depositado Correctamente!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error!");
+            Date fe = new Date();
+            Date ho = new Date();
+            error = e.getMessage();
+            String Descripcion = "Error: " + error;
+            atm.getLista_atms().get(pos_atm).getLogs().add(new log_sistema(actualw.getId().toString(), Descripcion, fe, ho.getHours() + ":" + ho.getMinutes()));
+            atm.escribir();
+
+        }
+
+    }//GEN-LAST:event_jButton17MouseClicked
+
+    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
+        // TODO add your handling code here:
+        jDialog1.setModal(true);
+        jDialog1.pack();
+        jDialog1.setLocationRelativeTo(this);
+        jDialog1.setVisible(true);
+
+    }//GEN-LAST:event_jButton18MouseClicked
+
+    private void jButton20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MouseClicked
+        // TODO add your handling code here:
+//        JFileChooser jfc = new JFileChooser();
+//        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto", "txt");
+//        jfc.addChoosableFileFilter(filtro);
+//        int seleccion = jfc.showSaveDialog(this);
+        administrador_binario_atm atm = new administrador_binario_atm("./ATM.diegobb");
+        atm.cargarArchivo();
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            File fichero = null;
+            //if (jfc.getFileFilter().getDescription().equals("Archivos de texto")) {
+            String f=atm.getLista_atms().get(pos_atm).getId_unico().toString();
+            System.out.println(f+" ppppppppp");
+            fichero = new File("./Bitacora_atm_"+f+".txt");
+            // } else {
+            //     fichero = jfc.getSelectedFile();
+            // }
+            fw = new FileWriter(fichero);//lee
+            bw = new BufferedWriter(fw);//escribe
+            bw.write(ta_1.getText());
+            ta_1.setText("");
+            bw.flush();
+            JOptionPane.showMessageDialog(this, "El archivo se guardo exitosamente");
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_jButton20MouseClicked
+
+    private void jButton19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MouseClicked
+        // TODO add your handling code here:
+        administrador_binario_atm atm = new administrador_binario_atm("./ATM.diegobb");
+        atm.cargarArchivo();
+        for (int j = 0; j < atm.getLista_atms().get(pos_atm).getLogs().size(); j++) {
+            ta_1.append(atm.getLista_atms().get(pos_atm).getLogs().get(j).toString() + "\n");
+        }
+    }//GEN-LAST:event_jButton19MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1460,7 +1715,10 @@ public class atm extends javax.swing.JFrame {
     private javax.swing.JTextField cu_segundoapel;
     private javax.swing.JComboBox<String> cuenta_cb;
     private javax.swing.JComboBox<String> cuenta_cb1;
+    private javax.swing.JComboBox<String> cuenta_cb2;
     private javax.swing.JDialog depositos;
+    private javax.swing.JLabel fecha;
+    private javax.swing.JLabel horads;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1469,7 +1727,11 @@ public class atm extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1477,6 +1739,7 @@ public class atm extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1513,6 +1776,9 @@ public class atm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1523,6 +1789,7 @@ public class atm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel jl_manager;
@@ -1539,6 +1806,7 @@ public class atm extends javax.swing.JFrame {
     private javax.swing.JSpinner sp_manager_100;
     private javax.swing.JSpinner ste_100;
     private javax.swing.JSpinner ste_500;
+    private javax.swing.JTextArea ta_1;
     private javax.swing.JLabel tf_atm_nombre;
     private javax.swing.JLabel tf_atm_ubicacion;
     private javax.swing.JTextField tf_contra;
